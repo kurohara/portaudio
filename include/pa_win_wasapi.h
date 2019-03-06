@@ -429,6 +429,16 @@ int PaWasapi_GetDeviceMixFormat( void *pFormat, unsigned int formatSize, PaDevic
 */
 int/*PaWasapiDeviceRole*/ PaWasapi_GetDeviceRole( PaDeviceIndex device );
 
+/** Returns device loopback indicator.
+
+ @param nDevice device index.
+
+ @return 0 = Not loopback, 1 = loopback, < 0 = PaErrorCode
+         if PortAudio is not initialized or an error is encountered.
+*/
+int PaWasapi_IsLoopback( PaDeviceIndex nDevice );
+
+
 
 /** Boost thread priority of calling thread (MMCSS).
 
