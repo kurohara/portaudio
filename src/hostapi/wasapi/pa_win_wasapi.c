@@ -1695,7 +1695,7 @@ static PaError CreateDeviceList(PaWasapiHostApiRepresentation *paWasapi, PaHostA
         }
     }
     
-    hr = IMMDeviceEnumerator_EnumAudioEndpoints(paWasapi->enumerator, eRender, DEVICE_STATE_ACTIVE, &pEndPoints);
+    hr = IMMDeviceEnumerator_EnumAudioEndpoints(pEnumerator, eRender, DEVICE_STATE_ACTIVE, &pEndPoints);
        // We need to set the result to a value otherwise we will return paNoError
        // [IF_FAILED_JUMP(hResult, error);]
        IF_FAILED_INTERNAL_ERROR_JUMP(hr, result, error);
@@ -2048,8 +2048,8 @@ static PaError CreateDeviceList(PaWasapiHostApiRepresentation *paWasapi, PaHostA
                                _snprintf(deviceName, MAX_STR_LEN-1, "%s (loopback)", deviceInfo->name);
                 deviceInfo->name = deviceName;
 
-                (*hostApi)->deviceInfos[i] = deviceInfo;
-                ++(*hostApi)->info.deviceCount;
+		hostApi->deviceInfos[i] = deviceInfo;
+		++hostApi->info.deviceCount;
             }
 
 	    //
